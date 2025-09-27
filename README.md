@@ -1,30 +1,30 @@
-### 🔧 Environment Setup (Google Colab)
+# Интелигентно управување со електрична енергија базирано на длабоко учење со поттикнување
 
-```python
-# Install CityLearn
-!pip install citylearn==2.3.0
+Овој дипломски труд разгледува интелигентно управување со батерии во повеќезградни енергетски мрежи преку **учење со поттикнување (Reinforcement Learning – RL)**. Истражувањето е реализирано во симулациската околина **CityLearn**, користејќи комбинација од **Proximal Policy Optimization (PPO)**, **Long Short-Term Memory (LSTM)** и **Graph Neural Networks (GNN)**.
 
-# Replace gym with gymnasium
-!pip uninstall -y gym
-!pip install gymnasium==0.29.1
+## 🎯 Цел
+Целта на трудот е да се развијат агенти кои учат да управуваат со складирањето и користењето на електричната енергија на економичен и стабилен начин. Особен акцент е ставен на споредбата помеѓу:
+- **Модели со и без GNN компонента**  
+- **Поедноставни и покомплексни наградни функции**
 
-# Install Stable Baselines3
-!pip install stable-baselines3[extra]==2.2.1
+## ⚙️ Методологија
+- **Околина:** CityLearn (податоци за 5 згради, тарифи, временски услови, јаглеродна интензивност)  
+- **Алгоритам:** PPO со Generalized Advantage Estimation  
+- **Архитектура:** PPO + LSTM за временска динамика и PPO + LSTM + GNN за структурна зависност меѓу зградите  
+- **Наградни функции:**  
+  - *SimpleReward* – заснована на потрошувачка и соларна генерација  
+  - *CustomReward* – дополнета со економски фактори и динамички цени  
 
-# Install PyTorch with CUDA 11.8
-!pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+## 📈 Резултати
+- **GNN** овозможува постабилен тренинг, но не секогаш подобра генерализација на нови згради.  
+- **CustomReward** води кон поекономични стратегии и подобро управување со батеријата.  
+- **SimpleReward** создава поедноставни, но помалку ефикасни стратегии.  
 
-# Install PyTorch Geometric
-!pip install torch-scatter -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
-!pip install torch-sparse -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
-!pip install torch-geometric
+## 🚀 Заклучок
+Комбинацијата PPO + LSTM + GNN покажува потенцијал за интелигентно управување со енергија, но изборот на наградната функција има уште поголемо влијание врз стабилноста и економичноста. Овој труд придонесува со споредбена анализа на различни архитектури и функции и нуди насоки за идни подобрувања.
 
-# Fix versions
-!pip install numpy==1.24.4 scipy==1.10.1
-!pip install tensorboard==2.12.3
-!pip install tensorflow==2.12.0
-
-# Restart Colab runtime
-import os
-os.kill(os.getpid(), 9)
-```
+## 🔮 Идни насоки
+- Интеграција на реални податоци (температура, оптоварувања, динамички тарифи)  
+- Истражување со повеќеагентски системи  
+- Примена на алтернативни наградни функции и нелинеарни модели  
+- Тестирање на поголеми и покомплексни сценарија
